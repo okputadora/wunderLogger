@@ -1,0 +1,19 @@
+{
+  "name": "wunderlogger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "dotenv": "^5.0.1",
+    "moment": "^2.22.0",
+    "moment-timezone": "^0.5.14",
+    "mongoose": "^5.0.13",
+    "node-weatherunderground": "^1.2.0"
+  }
+}
