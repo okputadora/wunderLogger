@@ -17,21 +17,26 @@ module.exports = {
         result.forEach(pred => {
           // if over ten days old (240 hours)
           let timeOfPredMom = moment(pred.timeOfPrediction, "YYYY-MM-DD-HH")
-          if (currentTimeMom.diff(timeofPredMom, 'days') >= 10){
+          if (currentTimeMom.diff(timeOfPredMom, 'days') >= 10){
             console.log("prediction should be removed")
             predictionsToRemove.push(pred._id)
           }
         })
         // then delete from db
-        Prediction.remove({'_id':{$in:predictionsToRemove}}, (err, result) => {
-          if (err){
-            reject(err);
-            return;
-          }
-          resolve(result)
-        })
+        if (predictionsToRemove.length > 0){
+          Prediction.remove({'_id':{$in:predictionsToRemove}}, (err, result) => {
+            if (err){
+              reject(err);
+              return;
+            }
+            resolve(result)
+          })
+        }
+        else{
+          console.log("no cleaning necessary at this time")
+          resolve()
+        }
       })
-
     })
   }
 }
