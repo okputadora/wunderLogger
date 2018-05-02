@@ -39,21 +39,16 @@ module.exports = {
           city: params.city,
           state: params.state,
           timeOfPrediction: currentTime,
+          service: "wunderground",
           forecasts: forecasts
         }
-        mongoose.connect(process.env.MONGODB_URI, function(err, res){
+        Prediction.create(prediction, (err, prediction) => {
           if (err){
-            console.log('DB CONNECTION FAILED: '+err)
-            return;
+            console.log('couldnt create')
+            reject(err)
+            return
           }
-          Prediction.create(prediction, (err, prediction) => {
-            if (err){
-              console.log('couldnt create')
-              reject(err)
-              return
-            }
-            resolve(prediction)
-          })
+          resolve(prediction)
         })
       })
     })
