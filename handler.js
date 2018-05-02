@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv').config()
 const wunderAPI = require('./utils/wundergroundAPI')
-const cleanDb = require('./utils/cleanDb.js')
+const cleanDb = require('./utils/cleanDb')
 const mongoose = require('mongoose')
 module.exports.wunder = (event, context, callback) => {
   // connect to the db

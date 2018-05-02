@@ -25,7 +25,7 @@ module.exports = {
         // then delete from db
         Prediction.remove({'_id':{$in:predictionsToRemove}}, (err, result) => {
           if (err){
-            reject err;
+            reject(err);
             return;
           }
           resolve(result)
