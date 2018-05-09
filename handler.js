@@ -20,5 +20,8 @@ module.exports.wunder = (event, context, callback) => {
       mongoose.connection.close()
       callback(null, result)
     })
+    .catch(() => {
+      mongoose.connection.close()
+    })
   })
 };
