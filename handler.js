@@ -11,16 +11,18 @@ module.exports.wunder = (event, context, callback) => {
       return;
     }
   })
-  // take city and state as params to get the weather
-  wunderAPI.get({key: process.env.WUNDER_API_KEY, city: "philadelphia", state: "pa"})
-  .then((result) => {
-    console.log("done")
-    cleanDb.clean()
-    .then(() => {
-      mongoose.connection.close()
-      callback(null, result)
+  .then(() => {
+    // take city and state as params to get the weather
+    wunderAPI.get({key: process.env.WUNDER_API_KEY, city: "philadelphia", state: "pa"})
+    .then((result) => {
+      console.log("done")
+      cleanDb.clean()
+      .then(() => {
+        mongoose.connection.close()
+        callback(null, result)
+      })
+      .catch(() => mongoose.connection.close())
     })
     .catch(() => mongoose.connection.close())
   })
-  .catch(() => mongoose.connection.close())
 };
