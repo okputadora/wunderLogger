@@ -44,7 +44,6 @@ module.exports = {
         }
         Prediction.create(prediction, (err, prediction) => {
           if (err){
-            console.log('couldnt create')
             reject(err)
             return
           }
